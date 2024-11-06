@@ -1,0 +1,12 @@
+// 在js文件中，输入@符出路径提示
+//注意：该文件只在js文件下生效，ts文件需创建tsconfig.json 
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "@/*": [
+                "src/renderer/src/*" //配置 @符号指向渲染进程的src包及其子目录
+            ]
+        }
+    }
+}
