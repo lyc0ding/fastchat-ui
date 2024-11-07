@@ -94,7 +94,7 @@ const squareUrl=ref('https://cn.bing.com/images/search?view=detailV2&ccid=H9x1Bx
         display: flex;
         border-radius: 0px 3px 3px 0px;
         overflow: hidden;
-        background-color: #ddd;
+        background-color: #FFFFFF;
         height: calc(100vh);
 
         .left {

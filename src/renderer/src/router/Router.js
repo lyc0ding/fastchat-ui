@@ -38,6 +38,11 @@ const routes = [
             path: '/contact/blank',
             component: () => import('@/views/contact/contents/Blank.vue'),
             name:'Blank'
+          },
+          {
+            path: '/contact/search',
+            component: () => import('@/views/contact/contents/Blank.vue'),
+            name:'Blank'
           }
         ]
       },

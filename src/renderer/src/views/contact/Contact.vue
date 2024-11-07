@@ -92,7 +92,7 @@ const contactPart = ref([
                 <div class="itemListName" >{{ children.name }}</div>
               </div>
             </div>
-            <el-divider style="margin-top: 10px;"/>
+            <el-divider style="margin-top: 5px;"/>
           </template>
         </div>
         

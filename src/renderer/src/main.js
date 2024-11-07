@@ -18,6 +18,7 @@ import Api from '@/utils/Api'
 //全局组件
 import Layout from '@/components/Layout.vue'
 import WinOption from '@/components/WinOption.vue'
+import ContactContents from '@/components/contact/Contents.vue'
 
 
 const app = createApp(App)
@@ -31,6 +32,7 @@ app.mount('#app')
 //注册全局组件
 app.component('Layout', Layout)
 app.component('WinOption', WinOption)
+app.component('ContactContents',ContactContents)
 
 
 // 放进全局的属性中，在组件中通过Proxy对象调用方法
