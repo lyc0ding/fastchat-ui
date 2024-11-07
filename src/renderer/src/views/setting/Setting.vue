@@ -4,7 +4,7 @@
 
 </template>
 
-<script setup>
+<script setup name="Settings">
 
 </script>
 

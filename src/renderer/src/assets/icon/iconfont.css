@@ -1,5 +1,6 @@
 @font-face {
-  font-family: "iconfont"; /* Project id 4299341 */
+  font-family: "iconfont";
+  /* Project id 4299341 */
   src: url('iconfont.ttf?t=1709734491698') format('truetype');
 }
 
@@ -226,4 +227,3 @@
 .icon-chat:before {
   content: "\e600";
 }
-

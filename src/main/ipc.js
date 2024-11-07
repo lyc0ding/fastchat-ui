@@ -18,7 +18,7 @@ const onLoginSuccess = (callback) => {
 
 // 接收置顶、最小化、最大化、关闭按钮的消息
 const winTitleOp = (callback) => {
-    ipcMain.on("winTitleOp", (e, data) => {
+    ipcMain.on("windowsOption", (e, data) => {
         callback(e,data)
     })
 }

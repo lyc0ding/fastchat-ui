@@ -38,9 +38,8 @@ onMounted(() => {
 })
 // 主进程调用（交互）
 const winOp = (action, data) => {
-    window.ipcRenderer.send('winTitleOp',{action,data})
+    window.ipcRenderer.send('windowsOption',{action,data})
 }
-
 // 关闭之后回调（做一些初始化操作）
 const emit = defineEmits(['closeCallback'])
 
@@ -59,17 +58,18 @@ const minimize = () => {
 const maximize = () => {
     if (isMax.value) {
         winOp('unmaximize')
+        isMax.value=!isMax.value
     }
     else {
         winOp('maximize')
-        isMax.value=true
+        isMax.value=!isMax.value
     }
 }
 
 // 置顶
 const top = () => {
+    winOp('top',{top:!isTop.value})
     isTop.value=!isTop.value
-    winOp('top',{top:isTop.value})
 }
 
 </script>
@@ -116,6 +116,10 @@ const top = () => {
         &:hover {
             background-color:lightgrey;
             color:#07c160;
+        }
+
+        &:nth-child(-n+3){
+            margin-right:20px;
         }
     }
 

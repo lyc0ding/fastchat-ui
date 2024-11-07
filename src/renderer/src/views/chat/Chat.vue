@@ -1,4 +1,4 @@
-<script setup>
+<script setup name="Sessions">
 import { ref } from 'vue';
 import {Search,CirclePlus} from '@element-plus/icons-vue'
 

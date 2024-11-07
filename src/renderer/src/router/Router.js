@@ -3,7 +3,6 @@ import { createRouter, createWebHistory } from 'vue-router'
 // 导入组件
 import LoginVue from '@/views/Login.vue'
 import MainVue from '@/views/Main.vue'
-import { component } from 'v-viewer'
 
 //定义路由规则  作用：存储路由
 const routes = [
@@ -27,50 +26,28 @@ const routes = [
       {
         path: '/chat',
         component: () => import('@/views/chat/Chat.vue'),
-        name: '聊天界面',
-        children: [
-          {
-            path: '',
-            component: () => import('@/views/chat/session/Session.vue'),
-            name: '会话列表'
-          }
-        ]
+        name: 'Sessions',
       },
       {
         path: '/contact',
         component: () => import('@/views/contact/Contact.vue'),
-        name: '联系人界面',
+        name: 'Contacts',
+        redirect:'/contact/blank',
         children: [
           {
-            path: '',
-            component: () => import('@/views/contact/contacts/ContactsList.vue'),
-            name: '联系人列表'
+            path: '/contact/blank',
+            component: () => import('@/views/contact/contents/Blank.vue'),
+            name:'Blank'
           }
         ]
       },
       {
         path: '/setting',
         component: () => import('@/views/setting/Setting.vue'),
-        name: '设置界面'
+        name: 'Settings'
       }
     ]
   }
-
-  // {
-  //     path: '/',
-  //     component: LayoutVue,
-  //     // 子路由
-  //     children: [
-  //         { path: '/article/category', component: categoryVue },
-  //         { path: 'article/list', component: articleListVue },
-  //         { path: '/', component: mainVue },
-  //         { path: '/setting', component: settingVue },
-  //         { path: '/userInfo', component: userInfo },
-  //         { path: '/notice', component: noticeVue },
-  //         { path: '/users', component: userVue },
-
-  //     ]
-  // },
 ]
 
 // 路由器：创建路由器

@@ -1,18 +1,26 @@
-<script setup>
+<script setup  name="Contacts">
 import {  ref } from 'vue';
 import { Search, CirclePlus, Plus } from '@element-plus/icons-vue'
 import { useRoute, useRouter } from 'vue-router';
 const router = useRouter
 const route=useRoute
 
-
+// 组件
+import BlankPage from '@/components/BlankPage.vue'
 
 const searchData = ref("")
+
+const currentSelected=ref(undefined)
+const partJump=(item)=>{
+  // currentSelected.value=item.  
+}
+
+// const selected=
 
 const contactPart = ref([
   {
     title: '新朋友',
-    children: [
+    childrens: [
       {
         name: '搜好友',
         icon: 'icon-search',
@@ -23,7 +31,7 @@ const contactPart = ref([
         name: '新的朋友',
         icon: 'icon-man',
         iconBgColor: '#08bf61',
-        path: '/contact/tianjiahaoyou',
+        path: '/contact/newFriends',
         showTitle: true,
         countKey:'contactApplyKey'
       }
@@ -31,23 +39,26 @@ const contactPart = ref([
   },
   {
     title: '我的群聊',
-    children: [
+    childrens: [
       {
         name: '新建群聊',
         icon: 'icon-add-group',
         iconBgColor: '#1485ee',
-        path:'/contact/search'
+        path:'/contact/createGroup'
       },
       {
-        name: '我的群聊',
+        name: '我的加入群聊',
         icon: 'icon-plane',
         iconBgColor: '#08bf61',
-        path:'/contact/contactNotice'
+        path:'/contact/myGroups'
       }
     ]
   },
   {
     title: '公众号',
+  },
+  {
+    title: '我的好友',
   }
 ])
 
@@ -73,7 +84,7 @@ const contactPart = ref([
               <div class="contact-list-title">{{ item.title }}</div>
             <!-- 联系人界面的选项 -->
               <div class="contactList-item"
-                v-for="children in item.children"
+                v-for="children in item.childrens"
                 @click="partJump(children)"
                 :class="['part-item',children.path==route.path?active:''] "
               >
@@ -86,9 +97,12 @@ const contactPart = ref([
         </div>
         
       </template>
-      <!-- 左侧聊天区插槽 -->
+      <!-- 右侧聊天区插槽 -->
       <template #right-content>
         <div class="drag-panel drag"></div>
+        <router-view>
+          
+        </router-view>
       </template>
     </Layout>
 </template>
@@ -113,6 +127,10 @@ const contactPart = ref([
   .contactList{
     width: 100%;
     .contact-list{
+      .contact-list-title{
+        color:#878686;
+        font-size:12px;
+      }
       .contactList-item{
         display: flex;
         height:57px;
@@ -133,7 +151,7 @@ const contactPart = ref([
         }
       }
       .contactList-item:hover{
-        background-color: grey
+        background-color:lightgrey;
       }
     }
   }

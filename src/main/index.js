@@ -15,7 +15,7 @@ function createWindow() {
     title: 'FastChat',
     icon: icon,
     width:850, //login_width,
-    height:800,//login_height, 
+    height:600,//login_height, 
     show: false,
     autoHideMenuBar: true,
     titleBarStyle: 'hidden',
