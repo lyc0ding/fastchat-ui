@@ -1,6 +1,4 @@
 <script setup>
-import { is } from '@electron-toolkit/utils';
-import { fa } from 'element-plus/es/locale';
 import { ref, reactive, getCurrentInstance, onMounted, nextTick } from 'vue'
 const proxy = getCurrentInstance()
 // 设置按钮的属性
@@ -29,8 +27,6 @@ const props = defineProps({
 
 })
 
-
-
 const isMax = ref(false)
 const isTop=ref(false)
 
@@ -47,10 +43,11 @@ const winOp = (action, data) => {
 
 // 关闭之后回调（做一些初始化操作）
 const emit = defineEmits(['closeCallback'])
+
 // 关闭窗口
 const close = () => {
     winOp('close', { closeType: props.closeType })
-    emit()
+    emit('closeCallback')
 }
 
 // 最小化窗口
@@ -64,18 +61,15 @@ const maximize = () => {
         winOp('unmaximize')
     }
     else {
-        winOp('maximize',{top:isTop.value})
+        winOp('maximize')
         isMax.value=true
     }
 }
 
 // 置顶
 const top = () => {
-    if (isTop.value) {
-        winOp('top')
-    } else {
-        winOp('untop')
-    }
+    isTop.value=!isTop.value
+    winOp('top',{top:isTop.value})
 }
 
 </script>
@@ -114,19 +108,21 @@ const top = () => {
         display: flex;
         justify-content: center;
         cursor: pointer;
+        width:25px;
         height: 25px;
         align-items: center;
-        padding: Opx 10px;
+        padding: Opx 30px;
 
         &:hover {
-         background:#ddd;
+            background-color:lightgrey;
+            color:#07c160;
         }
     }
 
     .icon-close {
         &:hover {
-            background:#fff;
-            color:#fff;
+            background:red;
+            color:black;
         }
     }
 

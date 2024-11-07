@@ -14,8 +14,8 @@ function createWindow() {
   const mainWindow = new BrowserWindow({
     title: 'FastChat',
     icon: icon,
-    width: 850, //login_width,
-    height: 700, //login_height,
+    width:850, //login_width,
+    height:800,//login_height, 
     show: false,
     autoHideMenuBar: true,
     titleBarStyle: 'hidden',
@@ -68,13 +68,40 @@ function createWindow() {
     mainWindow.setMinimizable(true)
     //设置最小窗口大小
     mainWindow.setMinimumSize(800, 600)
-    if (config) {
-      console.log(config)
-    }
   })
 
+  // 置顶、最小化、最大化、关闭操作
   winTitleOp((e,{action,data}) => {
     const webContents = e.sender;
+    const win = BrowserWindow.fromWebContents(webContents)
+    switch (action) {
+      case "close": {
+        if (data.closeType == 0) {
+          win.close()
+        }
+        else {
+          win.setSkipTaskbar(true)
+          win.hide()
+        }
+        break;
+      }
+      case "minimize": {
+        win.minimize();
+        break;
+      }
+      case "maximize": {
+        win.maximize();
+        break;
+      }
+      case "unmaximize": {
+        win.unmaximize();
+        break;
+      }
+      case "top": {
+        win.setAlwaysOnTop(data.top);
+        break;
+      }
+    }
   })
 
 }

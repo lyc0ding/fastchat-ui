@@ -89,7 +89,8 @@ const submit = async() => {
     isLogin.value ? ElMessage.success("登录成功！") : ElMessage.success("注册成功！")
     //将用户登录成功生成的token存入pinia
     UserInfoStore.setInfo(result.data)
-    if (isLogin.value) { //登录（注册）成功后做一些事情
+    if (isLogin.value) { 
+      // 登录（注册）成功，给主进程发消息
       window.ipcRenderer.send("loginSuccess", isLogin.value)
       router.push('/layout');
       return;
@@ -128,7 +129,6 @@ const closeWindow = () => {
     <!-- 登录界面标头 -->
     <div id="login-title" class="title drag">
       <span>FastChat</span>
-      <button @click="closeWindow"><el-icon><CloseBold /></el-icon></button>
     </div>
 
     <div id="login-interface">
@@ -224,6 +224,9 @@ const closeWindow = () => {
 
   </div>
   </div>
+
+  <WinOption :showSetTop="false" :showSetMax="false" :showSetMin="false"></WinOption>
+
 </template>
 
 

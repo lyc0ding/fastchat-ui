@@ -43,7 +43,7 @@ const routes = [
         children: [
           {
             path: '',
-            component: () => import('@/views/contact/contacts/Contacts.vue'),
+            component: () => import('@/views/contact/contacts/ContactsList.vue'),
             name: '联系人列表'
           }
         ]

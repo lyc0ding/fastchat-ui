@@ -21,7 +21,7 @@ const contactPart = ref([
       },
       {
         name: '新的朋友',
-        icon: 'icon-about',
+        icon: 'icon-man',
         iconBgColor: '#08bf61',
         path: '/contact/tianjiahaoyou',
         showTitle: true,
@@ -50,9 +50,6 @@ const contactPart = ref([
     title: '公众号',
   }
 ])
-
-
-
 
 </script>
 

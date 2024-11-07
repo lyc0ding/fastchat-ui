@@ -91,7 +91,6 @@ const squareUrl=ref('https://cn.bing.com/images/search?view=detailV2&ccid=H9x1Bx
 
 <style lang="scss" scoped>
     .main {
-        width: 800px;
         display: flex;
         border-radius: 0px 3px 3px 0px;
         overflow: hidden;

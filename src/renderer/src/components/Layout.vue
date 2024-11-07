@@ -8,7 +8,10 @@
       <slot name="right-content"></slot>
     </div>
   </div>
+  <WinOption></WinOption>
+
 </template>
+
 
 <script setup>
 </script>
@@ -20,7 +23,7 @@
 
     .left-list{
       width: 255px;
-      background-color: lightgrey;
+      background-color: #f7f7f7;
       display: flex;
       flex-direction: column;
       justify-content: start;

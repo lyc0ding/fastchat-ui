@@ -25,6 +25,8 @@ const searchData=ref("")
         <div class="drag-panel drag"></div>
       </template>
     </Layout>
+
+    <WinOption></WinOption>
 </template>
 
 <style lang="scss" scoped>
