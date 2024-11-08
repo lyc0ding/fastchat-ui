@@ -2,96 +2,96 @@
 import {  ref } from 'vue';
 import { Search, CirclePlus, Plus } from '@element-plus/icons-vue'
 import { useRoute, useRouter } from 'vue-router';
-const router = useRouter
+const router = useRouter()
 const route=useRoute
 
 // 组件
 import BlankPage from '@/components/BlankPage.vue'
 
-const searchData = ref("")
-
-const currentSelected=ref(undefined)
-const partJump=(item)=>{
-  // currentSelected.value=item.  
-}
-
-// const selected=
-
+// 联系人左侧选项
 const contactPart = ref([
   {
     title: '新朋友',
     childrens: [
       {
-        name: '搜好友',
-        icon: 'icon-search',
-        iconBgColor: '#fa9d3b',
-        path:'/contact/search'
-      },
-      {
+        id:1,
         name: '新的朋友',
-        icon: 'icon-man',
+        icon: 'icon-add-group',
         iconBgColor: '#08bf61',
-        path: '/contact/newFriends',
+        path: '/contact/apply',
         showTitle: true,
         countKey:'contactApplyKey'
       }
-    ]
+    ],
   },
   {
-    title: '我的群聊',
+    title: '群聊',
     childrens: [
       {
-        name: '新建群聊',
-        icon: 'icon-add-group',
-        iconBgColor: '#1485ee',
-        path:'/contact/createGroup'
-      },
-      {
-        name: '我的加入群聊',
+        id:2,
+        name: '我的群聊',
         icon: 'icon-plane',
-        iconBgColor: '#08bf61',
-        path:'/contact/myGroups'
+        iconBgColor: '#fe7a06',
+        path:'/contact/group'
       }
     ]
   },
   {
     title: '公众号',
+    contactData:[],
+    emptyMsg:'暂未添加公众号'
   },
   {
     title: '我的好友',
+    contactData:[],
+    emptyMsg:'暂未添加任何好友'
   }
 ])
 
+const searchData=ref('')
+
+// 选项活动状态、路由
+const currentPart = ref(null)
+const selectedPart=(children)=>{
+  currentPart.value=children
+  router.push(children.path)
+}
+// 判断当前选项
+const isActive=(children)=>{
+  return currentPart.value && currentPart.value.id == children.id
+}
 </script>
 
 <template>
     <Layout>
       <!-- 左侧会话区插槽 -->
       <template #left-content>
-        <div class="head" style="background-color: white;width: 100%;">
+        <div class="head">
           <!-- 可拖动区域 -->
         <div class="drag-panel drag"></div>
         <!--搜索框  -->
         <div class="search-panel">
           <!--input输入-->
-            <el-input  placeholder="请输入搜索内容" v-model="searchData" :suffix-icon="Search" style="height: 25px;"></el-input>
+            <el-input  placeholder="请输入搜索内容" v-model="searchData" :suffix-icon="Search"></el-input>
             <el-icon size="large"><CirclePlus /></el-icon>
         </div>
         </div>
         <div class="contactList" >
           <template v-for="item in contactPart">
             <div class="contact-list">
-              <div class="contact-list-title">{{ item.title }}</div>
+              <div class="contact-list-title" style="margin-top:-15px;">{{ item.title }}</div>
             <!-- 联系人界面的选项 -->
               <div class="contactList-item"
                 v-for="children in item.childrens"
-                @click="partJump(children)"
-                :class="['part-item',children.path==route.path?active:''] "
+                @click="selectedPart(children)"
+                :class="{active:isActive(children)}"
               >
                 <div class="itemListIcon" :class="['iconfont',children.icon]" :style="{ backgroundColor: children.iconBgColor}"></div>
                 <div class="itemListName" >{{ children.name }}</div>
               </div>
             </div>
+            <!-- 群聊、联系人查询为空提示 -->
+            <div class="contactListEmptyMsg" v-if="item.contactData && item.contactData.length == 0">{{ item.emptyMsg }}</div>
             <el-divider style="margin-top: 5px;"/>
           </template>
         </div>
@@ -100,32 +100,42 @@ const contactPart = ref([
       <!-- 右侧聊天区插槽 -->
       <template #right-content>
         <div class="drag-panel drag"></div>
-        <router-view>
-          
+        <router-view v-slot="{Component}">
+          <component :is="Component" ref="componentRef"></component>
         </router-view>
       </template>
     </Layout>
 </template>
 
 <style lang="scss" scoped>
+  .head{
+    width: 100%;
+    background-color: white;
+    height: 69px;
+  }
+
   .drag-panel{
     height: 25px;
     width: 100%;
   }
 
   .search-panel{
-    width: 90%;
+    width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
     align-items: center;
+    justify-content: center;
+    .el-input{
+      width: 80%;
+    }
     .el-icon{
-      margin-left: 15px;
+      margin-left: 10px;
       color: black;
     }
   }
   .contactList{
     width: 100%;
+    margin-top:30px;
     .contact-list{
       .contact-list-title{
         color:#878686;
@@ -133,7 +143,7 @@ const contactPart = ref([
       }
       .contactList-item{
         display: flex;
-        height:57px;
+        height:55px;
         .itemListIcon{
         margin-top: 10px;
         height: 35px;
@@ -143,6 +153,7 @@ const contactPart = ref([
         border-radius: 3px;
         text-align: center;
         }
+
         .itemListName{
           margin-left: 15px;
           display: flex;
@@ -153,6 +164,16 @@ const contactPart = ref([
       .contactList-item:hover{
         background-color:lightgrey;
       }
+
+      .active{
+        background-color: #c0baba;
+      }
+      
     }
+
+    .contactListEmptyMsg{
+      margin-top: 10px;
+        text-align: center;
+      }
   }
 </style>

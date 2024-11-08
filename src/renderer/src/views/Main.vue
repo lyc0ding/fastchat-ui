@@ -19,8 +19,8 @@ const menuList = ref([
         position:'top'
     },
     {
-        name: 'setting',
-        path: '/setting',
+        name: 'other',
+        path: '/other',
         position:'bottom'
     }
 
@@ -39,7 +39,7 @@ const changeMenu = (item) => {
 const selected = ref({
     chat: true,
     contact: undefined,
-    setting:undefined
+    other:undefined
 })
 //头像url
 const squareUrl=ref('https://cn.bing.com/images/search?view=detailV2&ccid=H9x1BxIT&id=56C940215BFBEC5DAD4DF6C1C0B2012E6F95E4D0&thid=OIP.H9x1BxITI75Tc3IMOKJekwAAAA&mediaurl=https%3a%2f%2fwww.keaitupian.cn%2fcjpic%2ffrombd%2f1%2f253%2f747603580%2f3757608376.jpg&exph=473&expw=474&q=%e5%a4%b4%e5%83%8f&simid=608035484470544068&FORM=IRPRST&ck=D1D00EE8DAFA6D75C695A15B982AFA89&selectedIndex=0&itb=0&idpp=overlayview&ajaxhist=0&ajaxserp=0')
@@ -72,8 +72,8 @@ const squareUrl=ref('https://cn.bing.com/images/search?view=detailV2&ccid=H9x1Bx
                 </div>
                 <div class="menu-list-item">
                     <template v-for="item in menuList">
-                        <div class="menu-item" :class="{'active':selected.setting}" v-if="item.position=='bottom'" @click="changeMenu(item)">
-                            <template v-if="item.name=='setting'" @click="changeMenu(item)"><el-icon><Setting /></el-icon></template>
+                        <div class="menu-item" :class="{'active':selected.other}" v-if="item.position=='bottom'" @click="changeMenu(item)">
+                            <template v-if="item.name=='other'"><el-icon><Orange /></el-icon></template>
                         </div>
                     </template>
                 </div>
@@ -87,6 +87,8 @@ const squareUrl=ref('https://cn.bing.com/images/search?view=detailV2&ccid=H9x1Bx
             </router-view>
         </div>
     </div>
+    
+  <WinOption></WinOption>
 </template>
 
 <style lang="scss" scoped>

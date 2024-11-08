@@ -40,15 +40,20 @@ const routes = [
             name:'Blank'
           },
           {
-            path: '/contact/search',
-            component: () => import('@/views/contact/contents/Blank.vue'),
-            name:'Blank'
+            path: '/contact/apply',
+            component: () => import('@/views/contact/contents/Apply.vue'),
+            name:'Applys'
+          },
+          {
+            path: '/contact/group',
+            component: () => import('@/views/contact/contents/Group.vue'),
+            name:'Groups'
           }
         ]
       },
       {
-        path: '/setting',
-        component: () => import('@/views/setting/Setting.vue'),
+        path: '/other',
+        component: () => import('@/views/other/Other.vue'),
         name: 'Settings'
       }
     ]

@@ -8,7 +8,6 @@
       <slot name="right-content"></slot>
     </div>
   </div>
-  <WinOption></WinOption>
 
 </template>
 

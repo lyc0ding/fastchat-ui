@@ -1,4 +1,4 @@
-<script setup>
+<script setup name="Blank">
 import BlankPage from '@/components/BlankPage.vue'
 </script>
 
