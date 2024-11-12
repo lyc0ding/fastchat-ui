@@ -1,4 +1,4 @@
-<script setup name="ContactBlank">
+<script setup name="OtherBlank">
 import BlankPage from '@/components/BlankPage.vue'
 </script>
 

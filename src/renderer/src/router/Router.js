@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 // 导入组件
 import LoginVue from '@/views/Login.vue'
 import MainVue from '@/views/Main.vue'
+import { component } from 'v-viewer'
 
 //定义路由规则  作用：存储路由
 const routes = [
@@ -22,6 +23,7 @@ const routes = [
     path: '/index',
     component: MainVue,
     name: '主窗口',
+    redirect:'/chat',
     children: [
       {
         path: '/chat',
@@ -37,7 +39,7 @@ const routes = [
           {
             path: '/contact/blank',
             component: () => import('@/views/contact/contents/Blank.vue'),
-            name:'Blank'
+            name:'ContactBlank'
           },
           {
             path: '/contact/apply',
@@ -54,7 +56,25 @@ const routes = [
       {
         path: '/other',
         component: () => import('@/views/other/Other.vue'),
-        name: 'Settings'
+        name: 'Others',
+        redirect:'/other/blank',
+        children:[
+          {
+            path:'/other/blank',
+            component:()=>import('@/views/other/contents/Blank.vue'),
+            name:'OtherBlank'
+          },
+          {
+            path:'/other/account',
+            component:()=>import('@/views/other/contents/AccountInfo.vue'),
+            name:'Account'
+          },
+          {
+            path:'/other/collect',
+            component:()=>import('@/views/other/contents/Collection.vue'),
+            name:'Collection'
+          },
+        ]
       }
     ]
   }
