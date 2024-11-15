@@ -5,7 +5,7 @@ const title = ref('我的群聊');
 </script>
 
 <template>
-    <ContactContents :title="title"></ContactContents>
+    <MainContents :title="title"></MainContents>
 </template>
 
 <style scoped lang="less">

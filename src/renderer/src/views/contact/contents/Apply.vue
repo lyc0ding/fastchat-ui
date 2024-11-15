@@ -4,7 +4,7 @@ const title = ref('新的好友');
 </script>
 
 <template>
-    <ContactContents :title="title"></ContactContents>
+    <MainContents :title="title"></MainContents>
 </template>
 
 <style scoped>

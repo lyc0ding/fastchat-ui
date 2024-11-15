@@ -68,13 +68,13 @@ const isActive=(children)=>{
       <template #left-content>
         <div class="head">
           <!-- 可拖动区域 -->
-        <div class="drag-panel drag"></div>
-        <!--搜索框  -->
-        <div class="search-panel">
+          <div class="drag-panel drag"></div>
+          <!--搜索框  -->
+          <div class="search-panel">
           <!--input输入-->
             <el-input  placeholder="请输入搜索内容" v-model="searchData" :suffix-icon="Search"></el-input>
             <el-icon size="large"><CirclePlus /></el-icon>
-        </div>
+          </div>
         </div>
         <div class="contactList" >
           <template v-for="item in contactPart">

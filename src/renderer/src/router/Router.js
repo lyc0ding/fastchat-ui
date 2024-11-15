@@ -66,14 +66,29 @@ const routes = [
           },
           {
             path:'/other/account',
-            component:()=>import('@/views/other/contents/AccountInfo.vue'),
+            component:()=>import('@/views/other/contents/Account.vue'),
             name:'Account'
+          },
+          {
+            path:'/other/file',
+            component:()=>import('@/views/other/contents/File.vue'),
+            name:'File'
           },
           {
             path:'/other/collect',
             component:()=>import('@/views/other/contents/Collection.vue'),
             name:'Collection'
           },
+          {
+            path:'/other/setting',
+            component:()=>import('@/views/other/contents/Setting.vue'),
+            name:'Setting'
+          },
+          {
+            path:'/other/about',
+            component:()=>import('@/views/other/contents/About.vue'),
+            name:'About'
+          }
         ]
       }
     ]
