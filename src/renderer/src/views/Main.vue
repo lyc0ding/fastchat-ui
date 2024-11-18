@@ -42,7 +42,7 @@ const selected = ref({
     other:undefined
 })
 //头像url
-const squareUrl=ref('https://cn.bing.com/images/search?view=detailV2&ccid=H9x1BxIT&id=56C940215BFBEC5DAD4DF6C1C0B2012E6F95E4D0&thid=OIP.H9x1BxITI75Tc3IMOKJekwAAAA&mediaurl=https%3a%2f%2fwww.keaitupian.cn%2fcjpic%2ffrombd%2f1%2f253%2f747603580%2f3757608376.jpg&exph=473&expw=474&q=%e5%a4%b4%e5%83%8f&simid=608035484470544068&FORM=IRPRST&ck=D1D00EE8DAFA6D75C695A15B982AFA89&selectedIndex=0&itb=0&idpp=overlayview&ajaxhist=0&ajaxserp=0')
+const squareUrl=ref('')
 </script>
  
 <template>

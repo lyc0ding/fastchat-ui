@@ -1,8 +1,8 @@
-<script setup lang="ts">
+<script setup>
 import { ref, reactive, toRefs, onMounted,watch} from 'vue'
 import { ElMessage} from 'element-plus'
 
-const url=ref('D:\fastchat-ui\src\renderer\src\assets\img\avator.jpg')
+const avatarUrl = ref('@/assets/img/avator.jpg');
 
 const title=ref('账户信息')
 
@@ -26,6 +26,7 @@ watch(ownAccountInfo, (newValue) => {
 
 const onSubmit=()=>{
     ElMessage.success("保存成功")
+    isUpdated.value=!isUpdated.value
 }
 </script>
 
@@ -34,7 +35,8 @@ const onSubmit=()=>{
         <div class="accoutContent">
             <div class="accounInfo">
                 <div class="accountAvatar">
-                    <el-avatar shape="square" size="100%" fit="fill" src="D:\fastchat-ui\src\renderer\src\assets\img\avator.jpg" />
+                    <!-- <el-avatar shape="square" size="large" fit="fill" :src="avatarUrl" /> -->
+                    <img src="@/assets/img/avator.jpg">
                 </div>
                 <div class="accountDetail">
                     <div class="userName">够钟</div>
@@ -83,7 +85,7 @@ const onSubmit=()=>{
                     </el-form-item>
                     
                     <el-form-item>
-                        <el-button type="primary" @click="onSubmit" v-if="isUpdated">保 存</el-button>
+                        <el-button type="primary" @click="onSubmit" v-if="isUpdated" style="width: 100%;">保 存</el-button>
                     </el-form-item>
                 </el-form>
             </div>
@@ -105,7 +107,7 @@ const onSubmit=()=>{
     .accounInfo{
         width: 75%;
         height: 25%;
-        margin-top: 40px;
+        margin-top: 20px;
         background-color: lightblue;
         display: flex;
         align-items: center;
@@ -123,6 +125,12 @@ const onSubmit=()=>{
                 width: 100%;  /* 使 el-avatar 填满父 div */  
                 height: 100%; /* 使 el-avatar 填满父 div */  
                 object-fit: cover; /* 调整图片的填充方式，根据需求可设置为 cover 或 contain */
+            }
+
+            img{
+                width: 100%; /* 使图片宽度占满容器 */  
+                height: 100%; /* 使图片高度占满容器 */  
+                object-fit: cover; /* 图片填满容器，保持比例 */  
             }
         }
 
