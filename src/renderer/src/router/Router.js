@@ -15,41 +15,40 @@ const routes = [
   {
     path: '/',
     // component: MainVue,
-    alias: '/main',
-    redirect: '/index',
+    redirect: '/login',
     name: '默认路径'
   },
   {
     path: '/index',
     component: MainVue,
     name: '主窗口',
-    redirect:'/chat',
+    redirect: '/chat',
     children: [
       {
         path: '/chat',
         component: () => import('@/views/chat/Chat.vue'),
-        name: 'Sessions',
+        name: 'Sessions'
       },
       {
         path: '/contact',
         component: () => import('@/views/contact/Contact.vue'),
         name: 'Contacts',
-        redirect:'/contact/blank',
+        redirect: '/contact/blank',
         children: [
           {
             path: '/contact/blank',
             component: () => import('@/views/contact/contents/Blank.vue'),
-            name:'ContactBlank'
+            name: 'ContactBlank'
           },
           {
             path: '/contact/apply',
             component: () => import('@/views/contact/contents/Apply.vue'),
-            name:'Applys'
+            name: 'Applys'
           },
           {
             path: '/contact/group',
             component: () => import('@/views/contact/contents/Group.vue'),
-            name:'Groups'
+            name: 'Groups'
           }
         ]
       },
@@ -57,37 +56,37 @@ const routes = [
         path: '/other',
         component: () => import('@/views/other/Other.vue'),
         name: 'Others',
-        redirect:'/other/blank',
-        children:[
+        redirect: '/other/blank',
+        children: [
           {
-            path:'/other/blank',
-            component:()=>import('@/views/other/contents/Blank.vue'),
-            name:'OtherBlank'
+            path: '/other/blank',
+            component: () => import('@/views/other/contents/Blank.vue'),
+            name: 'OtherBlank'
           },
           {
-            path:'/other/account',
-            component:()=>import('@/views/other/contents/Account.vue'),
-            name:'Account'
+            path: '/other/account',
+            component: () => import('@/views/other/contents/Account.vue'),
+            name: 'Account'
           },
           {
-            path:'/other/file',
-            component:()=>import('@/views/other/contents/File.vue'),
-            name:'File'
+            path: '/other/file',
+            component: () => import('@/views/other/contents/File.vue'),
+            name: 'File'
           },
           {
-            path:'/other/collect',
-            component:()=>import('@/views/other/contents/Collection.vue'),
-            name:'Collection'
+            path: '/other/collect',
+            component: () => import('@/views/other/contents/Collection.vue'),
+            name: 'Collection'
           },
           {
-            path:'/other/setting',
-            component:()=>import('@/views/other/contents/Setting.vue'),
-            name:'Setting'
+            path: '/other/setting',
+            component: () => import('@/views/other/contents/Setting.vue'),
+            name: 'Setting'
           },
           {
-            path:'/other/about',
-            component:()=>import('@/views/other/contents/About.vue'),
-            name:'About'
+            path: '/other/about',
+            component: () => import('@/views/other/contents/About.vue'),
+            name: 'About'
           }
         ]
       }

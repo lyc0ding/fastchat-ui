@@ -3,7 +3,7 @@ import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
 
-import { onLoginOrregister, onLoginSuccess,winTitleOp } from './ipc'
+import { onLoginOrregister, onLoginSuccess, winTitleOp } from './ipc'
 
 const login_width = 300
 const login_height = 370
@@ -14,8 +14,8 @@ function createWindow() {
   const mainWindow = new BrowserWindow({
     title: 'FastChat',
     icon: icon,
-    width:850, //login_width,
-    height:600,//login_height, 
+    width: login_width,
+    height: login_height,
     show: false,
     autoHideMenuBar: true,
     titleBarStyle: 'hidden',
@@ -62,7 +62,7 @@ function createWindow() {
 
   onLoginSuccess((config) => {
     mainWindow.setResizable(true) //可变窗口大小
-    mainWindow.setSize(850, 800)
+    mainWindow.setSize(850, 600)
     mainWindow.center() //居中显示
     //可以最大化
     mainWindow.setMinimizable(true)
@@ -71,39 +71,37 @@ function createWindow() {
   })
 
   // 置顶、最小化、最大化、关闭操作
-  winTitleOp((e,{action,data}) => {
-    const webContents = e.sender;
+  winTitleOp((e, { action, data }) => {
+    const webContents = e.sender
     const win = BrowserWindow.fromWebContents(webContents)
     switch (action) {
-      case "close": {
+      case 'close': {
         if (data.closeType == 0) {
           win.close()
-        }
-        else {
+        } else {
           win.setSkipTaskbar(true)
           win.hide()
         }
-        break;
+        break
       }
-      case "minimize": {
-        win.minimize();
-        break;
+      case 'minimize': {
+        win.minimize()
+        break
       }
-      case "maximize": {
-        win.maximize();
-        break;
+      case 'maximize': {
+        win.maximize()
+        break
       }
-      case "unmaximize": {
-        win.unmaximize();
-        break;
+      case 'unmaximize': {
+        win.unmaximize()
+        break
       }
-      case "top": {
-        win.setAlwaysOnTop(data.top);
-        break;
+      case 'top': {
+        win.setAlwaysOnTop(data.top)
+        break
       }
     }
   })
-
 }
 
 // This method will be called when Electron has finished

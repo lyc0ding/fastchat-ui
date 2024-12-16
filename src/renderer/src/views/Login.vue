@@ -92,7 +92,7 @@ const submit = async() => {
     if (isLogin.value) { 
       // 登录（注册）成功，给主进程发消息
       window.ipcRenderer.send("loginSuccess", isLogin.value)
-      router.push('/layout');
+      router.push('/index');//跳转到主页你买呢
       return;
     }
     changeOnType();
