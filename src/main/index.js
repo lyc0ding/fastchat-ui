@@ -3,9 +3,9 @@ import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
 
-import { onLoginOrregister, onLoginSuccess, winTitleOp } from './ipc'
+import { onLoginOrregister, onLoginSuccess, winTitleOp, onLogout } from './ipc'
 
-const login_width = 300
+const login_width = 285
 const login_height = 370
 const register_height = 465
 
@@ -14,8 +14,10 @@ function createWindow() {
   const mainWindow = new BrowserWindow({
     title: 'FastChat',
     icon: icon,
-    width: login_width,
-    height: login_height,
+    // width: login_width,
+    // height: login_height,
+    width: 800,
+    height: 600,
     show: false,
     autoHideMenuBar: true,
     titleBarStyle: 'hidden',
@@ -44,7 +46,7 @@ function createWindow() {
   if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
     mainWindow.loadURL(process.env['ELECTRON_RENDERER_URL'])
     //分离状态打开开发者工具
-    mainWindow.webContents.openDevTools({ mode: 'detach' })
+    // mainWindow.webContents.openDevTools({ mode: 'detach' })
   } else {
     mainWindow.loadFile(join(__dirname, '../renderer/index.html'))
   }
@@ -60,6 +62,7 @@ function createWindow() {
     mainWindow.setResizable(false)
   })
 
+  //监听用户登录成功
   onLoginSuccess((config) => {
     mainWindow.setResizable(true) //可变窗口大小
     mainWindow.setSize(850, 600)
@@ -68,6 +71,16 @@ function createWindow() {
     mainWindow.setMinimizable(true)
     //设置最小窗口大小
     mainWindow.setMinimumSize(800, 600)
+  })
+
+  //监听用户退出登录
+  onLogout((config) => {
+    mainWindow.setResizable(true) //可变窗口大小
+    mainWindow.setSize(login_width, login_height)
+    mainWindow.center() //居中显示
+    //可以最大化
+    mainWindow.setMinimizable(false)
+    mainWindow.setResizable(false) //可变窗口大小
   })
 
   // 置顶、最小化、最大化、关闭操作

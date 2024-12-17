@@ -23,8 +23,18 @@ const winTitleOp = (callback) => {
     })
 }
 
+// 退出登录
+const onLogout = (callback) => {
+    ipcMain.on("logout", (config) => {
+        if(config){
+            callback(config)
+        }
+    })
+}
+
 export {
     onLoginOrregister,
     onLoginSuccess,
-    winTitleOp
+    winTitleOp,
+    onLogout
 } 

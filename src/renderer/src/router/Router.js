@@ -15,7 +15,8 @@ const routes = [
   {
     path: '/',
     // component: MainVue,
-    redirect: '/login',
+    // redirect: '/login',
+    redirect: '/index',
     name: '默认路径'
   },
   {

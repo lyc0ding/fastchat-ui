@@ -117,11 +117,6 @@ const cleanFormData = () => {
   formData.value.phone = '',
   formData.value.nickname = ''
 }
-
-const closeWindow = () => {
-  console.log("jfoejf")
-}
-
 </script>
 
 <template>
@@ -225,7 +220,7 @@ const closeWindow = () => {
   </div>
   </div>
 
-  <WinOption :showSetTop="false" :showSetMax="false" :showSetMin="false"></WinOption>
+  <WinOption class="close" :showSetTop="false" :showSetMax="false" :showSetMin="false"></WinOption>
 
 </template>
 
@@ -233,6 +228,7 @@ const closeWindow = () => {
 <style lang="scss" scoped>
 
   #login-panel{
+    user-select: none;
     background-color:white;
   }
    
@@ -297,5 +293,10 @@ const closeWindow = () => {
     span:hover{
     color: #07c160;
     }
+  }
+
+  .close{
+    width: 26px;
+    padding-right: 5px;
   }
 </style>
